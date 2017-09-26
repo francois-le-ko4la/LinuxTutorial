@@ -275,7 +275,7 @@ sudo update-grub2
 > The data part of the user must be saved using NAS / USB disk media.
 >
 
-## Usefull CMD
+## Useful CLI
 ### Update the system
 ```ssh
 sudo apt-get -y update; sudo apt-get -y upgrade
