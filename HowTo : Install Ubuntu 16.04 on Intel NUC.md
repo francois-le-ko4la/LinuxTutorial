@@ -1,5 +1,5 @@
 ![alt Avatar](https://avatars0.githubusercontent.com/u/24376156?v=4&s=100)
-# Install Ubuntu 16.04 / Intel NUC - Post Install
+# Install Ubuntu 16.04 / Intel NUC & Post Install
 ## Objectives
 We give in the following all the steps allowing the Ubuntu installation on Intel NUC PC.
 This document is provided “as is” without any representations or warranties, express or implied.
