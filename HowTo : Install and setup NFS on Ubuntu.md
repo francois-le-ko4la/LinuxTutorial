@@ -1,6 +1,6 @@
 ![alt Avatar](https://avatars0.githubusercontent.com/u/24376156?v=4&s=100)
-# Install and Set Up an NFS Mount on Ubuntu
-## Objective
+# Install and setup NFS on Ubuntu
+## Objectives
 
 - Provide NFS export __quickly__ on Ubuntu.
 
