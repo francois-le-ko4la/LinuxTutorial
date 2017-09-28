@@ -1,18 +1,20 @@
-# Objective
+![alt Avatar](https://avatars0.githubusercontent.com/u/24376156?v=4&s=100)
+# Install and Set Up an NFS Mount on Ubuntu
+## Objective
 
-- Set up quickly NFS export on Ubuntu.
+- Provide NFS export __quickly__ on Ubuntu.
 
-# Environment
+## Environment
 
 - Ubuntu 16.04 (LTS)
 
-# Install packages
+## Install packages
 
 ```ssh
 sudo apt-get install nfs-kernel-server 
 ```
 
-# Setup
+## Setup
 
 - create export folder
 ```ssh
