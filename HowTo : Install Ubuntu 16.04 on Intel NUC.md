@@ -178,6 +178,23 @@ sudo apt-get install caffeine
 >
 > Security Architect is a job. We provide only best practices.
 >
+
+### Firewall
+__Don't forget to setup the firewall !__
+By default, Ubuntu is provided with ufw.
+All has been packaged to simplify security tasks : https://help.ubuntu.com/community/UFW
+
+Ok, we dont like it... really... Therefore, we uninstall ufw/firewalld and we setup __iptables__.
+
+```ssh
+sudo apt-get remove --purge ufw
+sudo apt-get remove --purge firewalld
+sudo apt-get install iptables-persistent
+sudo service netfilter-persistent start
+sudo invoke-rc.d netfilter-persistent save
+```
+Rules will be store in /etc/iptables/rules.v4 & /etc/iptables/rules.v6.
+
 ### Password management
 >
 > Don't use online tool to store your password !!!!! Never.
