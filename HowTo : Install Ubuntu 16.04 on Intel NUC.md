@@ -274,34 +274,3 @@ sudo update-grub2
 > different configuration files and thus to completely redo the system from scratch.
 > The data part of the user must be saved using NAS / USB disk media.
 >
-
-## Useful CLI
-### Update the system
-```ssh
-sudo apt-get -y update; sudo apt-get -y upgrade
-```
-### Clean the system
-```ssh
-sudo apt-get autoremove --purge
-```
-
-### Clean the logs
-```ssh
-sudo find /var/log -type f -name "*.gz" -delete
-```
-### Clean old setup
-```ssh
-sudo dpkg --purge $(COLUMNS=200 dpkg -l | grep "^rc" | tr -s ' ' | cut -d ' ' -f 2)
-```
-### Clean old Kernel
-```ssh
-sudo apt-get autoremove --purge
-```
-if the command doesnt work :
-```ssh
-sudo apt-mark auto $(apt-mark showmanual | egrep 'linux-.*[0-9]')
-```
-We can remove old kernel manually :
-```ssh
-sudo dpkg -l 'linux-*' | sed '/^ii/!d;/'"$(uname -r | sed "s/\(.*\)-\([^0-9]\+\)/\1/")"'/d;s/^[^ ]* [^ ]* \([^ ]*\).*/\1/;/[0-9]/!d' | xargs sudo apt-get -y purge
-```
