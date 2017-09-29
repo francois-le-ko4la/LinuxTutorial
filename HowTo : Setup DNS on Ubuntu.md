@@ -1,3 +1,4 @@
+![alt Avatar](https://avatars0.githubusercontent.com/u/24376156?v=4&s=100)
 # How to setup DNS on Ubuntu (DRAFT)
 
 In general, the DNS is set up via DHCP. This allows a laptop to connect whatever the connection (home, starbuck, ...). In the case of equipment that does not move, DHCP is not always a good idea. For example, a DNS based on the Internet provider becomes a security flaw in setting up a VPN ...
@@ -81,7 +82,7 @@ cat /etc/systemd/resolved.conf
 #DNSStubListener=udp
 ```
 
-### I don't want it ! Because....
+## I don't want it ! Because....
 
 Because systemd provide nice issue and we want a correct name resolution........ just do it...... pleeeeease
 ```ssh
