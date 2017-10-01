@@ -26,7 +26,7 @@ sudo mkdir -R /export/ko4la
 sudo mount --bind /home/ko4la /export/ko4la
 ```
 
-- Edit /etc/default/nfs-kernel-server and change NEED_SVCGSSD parameter
+- Edit `/etc/default/nfs-kernel-server` and change `NEED_SVCGSSD` parameter
 
 ```ssh
 sudo vi /etc/default/nfs-kernel-server
@@ -51,7 +51,8 @@ sudo service idmapd restart
 
 There are many many docs to mount NFS export on Linux... Google is our friend :D
 
-On Windows, yeeeaaa I know....., we can install NFS Client and use CLI to mount a drive :
+On Windows, yeeeaaa I know....., we can install NFS Client and use CLI to mount a drive.
+Use the `casesensitive` option.
 ```ssh
 mount -o casesensitive=yes -u:ko4la -p:<password> <IPServeurNFS>:/export/ko4la r:
 ```
