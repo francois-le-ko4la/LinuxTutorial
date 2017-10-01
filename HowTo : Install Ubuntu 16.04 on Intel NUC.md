@@ -79,7 +79,7 @@ sudo ln -s /media/virtualram/ /var/cache/apt/archives
 ```ssh
 sudo vi /etc/fstab
 ```
-- comment the line
+- Comment the line
 ```ssh
 # UUID=XXXXXXXX none            swap    sw              0       0
 ```
