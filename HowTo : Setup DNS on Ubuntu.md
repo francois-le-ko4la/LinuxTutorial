@@ -1,7 +1,7 @@
 ![alt Avatar](https://avatars0.githubusercontent.com/u/24376156?v=4&s=100)
 # How to setup DNS on Ubuntu
 
-In general, the DNS is set up via DHCP. This allows a laptop to connect whatever the connection (home, starbuck, ...). In the case of equipment that does not move, DHCP is not always a good idea. For example, a DNS based on the Internet provider becomes a security flaw in setting up a VPN ...
+In general, the DNS is set up via DHCP. This allows a laptop to connect whatever the connection (home, Starbucks, ...). In the case of equipment that does not move, DHCP is not always a good idea. For example, a DNS based on the Internet provider becomes a security flaw in setting up a VPN ...
 Our goal is to keep the DHCP that allows us to assign the IP but to freeze the DNS.
 
 ## Basic Methodology
@@ -137,7 +137,7 @@ sudo cat /run/systemd/resolve/resolv.conf
 ## I don't want it ! Because....
 
 Because.... :
-- ... systemd provide nice issue and we want a correct name resolution........ just do it...... pleeeeease
+- ... systemd provides nice issue and we want a correct name resolution........ just do it...... pleeeeease
 - ... my scripts are using /etc/resolv.conf
 
 ```ssh
