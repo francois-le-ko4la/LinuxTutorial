@@ -6,8 +6,8 @@ Our goal is to keep the DHCP that allows us to assign the IP but to freeze the D
 
 ## Basic Methodology
 
-- Edit the /etc/resolv.conf file
-- Add "nameserver XXX.XXX.XXX.XXX" at the end of the file
+- Edit the `/etc/resolv.conf` file
+- Add `nameserver XXX.XXX.XXX.XXX` at the end of the file
 
 > Simple, and effective as usual.<br />
 
@@ -17,8 +17,8 @@ Our goal is to keep the DHCP that allows us to assign the IP but to freeze the D
 > Certainly for very good reasons since before it was simple and effective :)<br />
 > Basicaly, the goal is to simplify the system management. Ubuntu user can change all the settings with the Network Manager.
 
-The service /lib/systemd/system/systemd-resolved-update-resolvconf.service causes resolvconf to add 127.0.0.53 by default to the set of nameservers in /etc/resolv.conf.
-Each reboot changes the /etc/resolv.conf file. As a consequence, there is no need to insist.
+The service `/lib/systemd/system/systemd-resolved-update-resolvconf.service` causes resolvconf to add 127.0.0.53 by default to the set of nameservers in `/etc/resolv.conf`.
+Each reboot changes the `/etc/resolv.conf` file. As a consequence, there is no need to insist.
 
 ```ssh
 cat /lib/systemd/resolv.conf
@@ -36,7 +36,7 @@ nameserver 127.0.0.53
 ```
 
 - This IP is a link to systemd-resolved daemon....
-- View /run/systemd/resolve/resolv.conf :
+- View `/run/systemd/resolve/resolv.conf` :
 ```ssh
 cat /run/systemd/resolve/resolv.conf
 # This file is managed by man:systemd-resolved(8). Do not edit.
@@ -53,9 +53,9 @@ cat /run/systemd/resolve/resolv.conf
 
 nameserver 8.8.8.8
 ```
-- We find our DNS config.... but "This file is managed by man:systemd-resolved(8). Do not edit."
+- We find our DNS config.... but "`This file is managed by man:systemd-resolved(8). Do not edit`".
 > Pfff....
-- View /etc/systemd/resolved.conf :
+- View `/etc/systemd/resolved.conf` :
 
 ```ssh
 cat /etc/systemd/resolved.conf
@@ -83,7 +83,7 @@ cat /etc/systemd/resolved.conf
 #DNSStubListener=udp
 ```
 - This is a nice way but there is another one...
-- Ubuntu uses NetWork Manager. Therefore, we can take a look on /etc/NetworkManager
+- Ubuntu uses NetWork Manager. Therefore, we can take a look on `/etc/NetworkManager/system-connections/`
 
 ```ssh
 $ sudo cat /etc/NetworkManager/system-connections/Connexion\ filaire\ 1
@@ -111,8 +111,8 @@ addr-gen-mode=stable-privacy
 dns-search=
 method=auto
 ```
-
-- Use nmcli to setup your DNS !!!!
+- We find the DNS setting !
+- Use `nmcli` to setup your DNS !!!!
 ```ssh
 nmcli connection edit __double tab to list available connections and chose appropriate__
 
@@ -122,22 +122,17 @@ nmcli connection edit __double tab to list available connections and chose appro
    nmcli> save
    nmcli> quit 
 ```
-
 - Restart your network
-
 ```ssh
 nmcli connection down your_connection_name
 nmcli connection up your_connection_name
 ```
-
 - check your DNS 
 ```ssh
 sudo systemd-resolve --status
 sudo cat /run/systemd/resolve/resolv.conf
 ```
-
 > All seems to be good.
-
 
 ## I don't want it ! Because....
 
@@ -150,4 +145,4 @@ ls -la /etc/resolv.conf
 sudo rm -f /etc/resolv.conf
 sudo ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
 ```
-Quick but not really recommended on desktop/end-user Environment.
+Quick but not really recommended on desktop/end-user environment.
