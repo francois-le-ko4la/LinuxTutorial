@@ -112,6 +112,10 @@ sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-ke
 sudo apt-get update
 sudo apt-get install google-chrome-stable
 ```
+- Launch Compiz Manager
+- Go to Composite part
+- Change the key `Unredirect Match` in the end : `....& !(class=^Goggle-chrome)`
+> This step is not required on Ubuntu 17.10 :)
 - Use the virtual drive to store Google Cache
 ```ssh
 mkdir /media/virtualram/GPUCache
