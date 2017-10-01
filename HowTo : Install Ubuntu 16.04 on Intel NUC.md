@@ -31,7 +31,7 @@ we have enough tutorial on many website.... We use a flash drive in order to ins
 ## Disque SSD
 ### TRIM
 
-- Check noatime/discard parameters in /etc/fstab :
+- Check `noatime`/`discard` parameters in `/etc/fstab` :
 ```sh
 UUID=XXXXXXXXXXXXXXXXXXX /               ext4    noatime,discard,errors=remount-ro 0       1
 ```
@@ -54,8 +54,8 @@ echo "$(date -R)" >> $LOG
 fstrim -v / >> $LOG
 ```
 ### APT Cache on a TMPFS folder
-In order to protect the SSD, we replace original folder (/var/cache/apt/archives) by a TMPFS drive.
-- Edit /etc/fstab
+In order to protect the SSD, we replace original folder (`/var/cache/apt/archives`) by a TMPFS drive.
+- Edit `/etc/fstab`
 ```ssh
 sudo vi /etc/fstab
 ```
@@ -75,7 +75,7 @@ sudo ln -s /media/virtualram/ /var/cache/apt/archives
 ```
 
 ### Disable swap
-- Edit /etc/fstab
+- Edit `/etc/fstab`
 ```ssh
 sudo vi /etc/fstab
 ```
@@ -102,7 +102,7 @@ According to the documentation we can use this tool on Crucial M500
 
 ### Firefox
 
-Installed by default
+- Installed by default
 
 ### Chrome
 - Chrome installation
@@ -121,7 +121,7 @@ rm -rf $HOME/.cache/google-chrome
 ln -s /media/virtualram/GPUCache $HOME/.config/google-chrome/Default/GPUCache
 ln -s /media/virtualram/google-chrome $HOME/.cache/google-chrome
 ```
-- Edit ~.profile :
+- Edit `~.profile` :
 - Add theses lines :
 ```ssh
 mkdir /media/virtualram/GPUCache > /dev/null 2>&1
@@ -181,10 +181,10 @@ sudo apt-get install caffeine
 
 ### Firewall
 __Don't forget to setup the firewall !__
-By default, Ubuntu is provided with ufw.
+By default, Ubuntu is provided with `ufw`.
 All has been packaged to simplify security tasks : https://help.ubuntu.com/community/UFW
 
-Ok, we dont like it... really... Therefore, we uninstall ufw/firewalld and we setup __iptables__.
+Ok, we dont like it... really... Therefore, we uninstall `ufw`/`firewalld` and we setup `iptables`.
 
 ```ssh
 sudo apt-get remove --purge ufw
@@ -193,7 +193,7 @@ sudo apt-get install iptables-persistent
 sudo service netfilter-persistent start
 sudo invoke-rc.d netfilter-persistent save
 ```
-Rules will be store in /etc/iptables/rules.v4 & /etc/iptables/rules.v6.
+> Rules will be store in /etc/iptables/rules.v4 & /etc/iptables/rules.v6.
 
 ### Password management
 >
@@ -208,23 +208,21 @@ sudo apt-get install keepass2
 >
 
 ### Use disk encryption
-Ubuntu installation allow you disk encryption.
+- Ubuntu installation allow you disk encryption.
 
 ### Use HTTPS
 
-use HPPS everywhere with chrome : https://chrome.google.com/webstore/detail/https-everywhere/gcbommkclmclpchllfjekcdonpmejbdp?utm_source=chrome-ntp-icon
+- Use HPPS everywhere with chrome : https://chrome.google.com/webstore/detail/https-everywhere/gcbommkclmclpchllfjekcdonpmejbdp?utm_source=chrome-ntp-icon
 
 ### Fail2Ban : secure connections
 ```ssh
 sudo fail2ban-client
 ```
->
 > source of information : https://doc.ubuntu-fr.org/fail2ban
->
 
 ### VPN
 
-- install OpenVPN
+- Install `OpenVPN`
 ```ssh
 sudo apt-get install openvpn network-manager-openvpn network-manager-openvpn-gnome
 ```
@@ -238,7 +236,7 @@ sudo apt-get install openvpn network-manager-openvpn network-manager-openvpn-gno
 ```ssh
 sudo mkdir /media/recover
 ```
-- Install/start gparted
+- Install/start `gparted`
 ```ssh
 sudo apt-get install gparted
 sudo gparted
@@ -248,17 +246,17 @@ sudo gparted
 ```ssh
 UUID=XXXXX /media/recover  ext4    noatime,discard,errors=remount-ro 0       1
 ```
-- mount the device and copy iso
+- Mount the device and copy iso
 ```ssh
 sudo mount /media/recover
 cd /media/recover
 sudo wget http://www-ftp.lip6.fr/pub/linux/distributions/Ubuntu/releases/16.04/ubuntu-16.04-desktop-amd64.iso
 ```
-- Edit /etc/default/grub
+- Edit `/etc/default/grub`
 ```ssh
 sudo vi /etc/default/grub
 ```
-- Comment "GRUB_HIDDEN_TIMEOUT=0"
+- Comment `GRUB_HIDDEN_TIMEOUT=0`
 - Edit /etc/grub.d/40_custom
 ```ssh
 sudo vi /etc/grub.d/40_custom
@@ -266,12 +264,12 @@ sudo vi /etc/grub.d/40_custom
 - Add the menuEntry :
 ```ssh
 menuentry "Ubuntu 16.04LTS ISO" {
-insmod loopback
-insmod iso9660
-set isofile="/ubuntu-16.04-desktop-amd64.iso"
-loopback loop (hd0,gpt3)$isofile
-linux (loop)/casper/vmlinuz.efi boot=casper iso-scan/filename=$isofile noprompt noeject
-initrd (loop)/casper/initrd.lz
+  insmod loopback
+  insmod iso9660
+  set isofile="/ubuntu-16.04-desktop-amd64.iso"
+  loopback loop (hd0,gpt3)$isofile
+  linux (loop)/casper/vmlinuz.efi boot=casper iso-scan/filename=$isofile noprompt noeject
+  initrd (loop)/casper/initrd.lz
 }
 ```
 >
@@ -282,7 +280,7 @@ initrd (loop)/casper/initrd.lz
 sudo update-grub2
 ```
 - Restart the system
-- Use Grub and select "Ubuntu 16.04LTS ISO"
+- Use Grub and select `Ubuntu 16.04LTS ISO`
 >
 > The live CD is loaded and you can make any changes on your system (convenient!)
 > This method is convenient in case of worries without having to make a usb key bootable.
