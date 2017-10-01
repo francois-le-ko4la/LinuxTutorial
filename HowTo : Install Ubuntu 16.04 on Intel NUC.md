@@ -5,7 +5,7 @@ We give in the following all the steps allowing the Ubuntu installation on Intel
 This document is provided “as is” without any representations or warranties, express or implied.
 
 ## Environment
-We setup Ubuntu 16.04 on Intel NUC (D54250WYK) : 8GB, intel HDA 5XXX, and SSD Crucial M500 (100GB).
+We setup Ubuntu 16.04 on Intel NUC (D54250WYK): 8GB, intel HDA 5XXX, and SSD Crucial M500 (100GB).
 
 ## Caveats/Warning
 - Unity8 - blackscreen
@@ -16,7 +16,7 @@ We setup Ubuntu 16.04 on Intel NUC (D54250WYK) : 8GB, intel HDA 5XXX, and SSD Cr
 - The NUC
 - 1 flash drive
 - screen/keyboard/mouse connected
-- ISO : Ubuntu Desktop 16.04 (LTS)
+- ISO: Ubuntu Desktop 16.04 (LTS)
 
 ## BIOS update
 - Download the last BIOS version
@@ -26,12 +26,12 @@ We setup Ubuntu 16.04 on Intel NUC (D54250WYK) : 8GB, intel HDA 5XXX, and SSD Cr
 - Wait until the end of process
 
 ## Minimal Ubuntu installation
-we have enough tutorial on many website.... We use a flash drive in order to install the operating system and we do a minimal setup according to this guide : https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-desktop#0
+We have enough tutorial on many websites... We use a flash drive in order to install the operating system and we do a minimal setup according to this guide: https://tutorials.ubuntu.com/tutorial/tutorial-install-ubuntu-desktop#0
 
 ## Disque SSD
 ### TRIM
 
-- Check `noatime`/`discard` parameters in `/etc/fstab` :
+- Check `noatime`/`discard` parameters in `/etc/fstab`:
 ```sh
 UUID=XXXXXXXXXXXXXXXXXXX /               ext4    noatime,discard,errors=remount-ro 0       1
 ```
@@ -94,11 +94,11 @@ Whereas, Crucial website allow to download Linux ISO to update the disk ???...
 Micron website allow to download Linux tools ;-) : Storage Executive 64 bits
 According to the documentation we can use this tool on Crucial M500
 > 
-> source of information :
+> source of information:
 > http://www.micron.com/products/solid-state-storage/storage-executive-software
 > 
 
-## Browser and VOD (netflix/canalplay...)
+## Browser and VOD (Netflix/CanalPlay...)
 
 ### Firefox
 
@@ -114,7 +114,7 @@ sudo apt-get install google-chrome-stable
 ```
 - Launch Compiz Manager
 - Go to Composite part
-- Change the key `Unredirect Match` in the end : `....& !(class=^Goggle-chrome)`
+- Change the key `Unredirect Match` in the end: `....& !(class=^Goggle-chrome)`
 > This step is not required on Ubuntu 17.10 :)
 - Use the virtual drive to store Google Cache
 ```ssh
@@ -125,8 +125,8 @@ rm -rf $HOME/.cache/google-chrome
 ln -s /media/virtualram/GPUCache $HOME/.config/google-chrome/Default/GPUCache
 ln -s /media/virtualram/google-chrome $HOME/.cache/google-chrome
 ```
-- Edit `~.profile` :
-- Add theses lines :
+- Edit `~.profile`:
+- Add theses lines:
 ```ssh
 mkdir /media/virtualram/GPUCache > /dev/null 2>&1
 mkdir /media/virtualram/google-chrome > /dev/null 2>&1
@@ -148,7 +148,7 @@ sudo apt-get install oracle-java8-installer
 >
 
 ## Flash
-Flash is a super hero that runs very fast. So nothing to do with a Linux installation.
+Flash is a superhero that runs very fast. So nothing to do with a Linux installation.
 >
 > Please, don't use, install, promote... 
 >
@@ -163,7 +163,7 @@ sudo apt-get install ubuntu-restricted-extras libavcodec-extra
 sudo apt-get install kodi
 ```
 >
-> we talk about kodi but we think that Plex is better
+> We talk about kodi but we think that Plex is better
 >
 
 ### Plex
@@ -184,11 +184,11 @@ sudo apt-get install caffeine
 >
 
 ### Firewall
-__Don't forget to setup the firewall !__
+__Don't forget to setup the firewall!__
 By default, Ubuntu is provided with `ufw`.
-All has been packaged to simplify security tasks : https://help.ubuntu.com/community/UFW
+All have been packaged to simplify security tasks : https://help.ubuntu.com/community/UFW
 
-Ok, we dont like it... really... Therefore, we uninstall `ufw`/`firewalld` and we setup `iptables`.
+Ok, we don't like it... really... Therefore, we uninstall `ufw`/`firewalld` and we setup `iptables`.
 
 ```ssh
 sudo apt-get remove --purge ufw
@@ -201,28 +201,28 @@ sudo invoke-rc.d netfilter-persistent save
 
 ### Password management
 >
-> Don't use online tool to store your password !!!!! Never.
+> Don't use an online tool to store your password !!!!! Never.
 > Use Keepass2.... trust me.....
 >
 ```ssh
 sudo apt-get install keepass2
 ```
 >
-> source of information : http://keepass.info/
+> source of information: http://keepass.info/
 >
 
 ### Use disk encryption
-- Ubuntu installation allow you disk encryption.
+- Ubuntu installation allows you disk encryption.
 
 ### Use HTTPS
 
-- Use HPPS everywhere with chrome : https://chrome.google.com/webstore/detail/https-everywhere/gcbommkclmclpchllfjekcdonpmejbdp?utm_source=chrome-ntp-icon
+- Use HPPS everywhere with chrome: https://chrome.google.com/webstore/detail/https-everywhere/gcbommkclmclpchllfjekcdonpmejbdp?utm_source=chrome-ntp-icon
 
-### Fail2Ban : secure connections
+### Fail2Ban: secure connections
 ```ssh
 sudo fail2ban-client
 ```
-> source of information : https://doc.ubuntu-fr.org/fail2ban
+> source of information: https://doc.ubuntu-fr.org/fail2ban
 
 ### VPN
 
@@ -233,7 +233,7 @@ sudo apt-get install openvpn network-manager-openvpn network-manager-openvpn-gno
 >
 > Setup openvpn according to the VPN Provider.
 > Test your security... DNSLeak, IPLeak...
-> Other informations : https://doc.ubuntu-fr.org/securite
+> Other informations: https://doc.ubuntu-fr.org/securite
 
 ## Recover partition
 - Create a mountpoint
@@ -246,7 +246,7 @@ sudo apt-get install gparted
 sudo gparted
 ```
 - Right click on swap partition Format > ext4
-- Edit /etc/fstab
+- Edit `/etc/fstab`
 ```ssh
 UUID=XXXXX /media/recover  ext4    noatime,discard,errors=remount-ro 0       1
 ```
@@ -289,7 +289,7 @@ sudo update-grub2
 > The live CD is loaded and you can make any changes on your system (convenient!)
 > This method is convenient in case of worries without having to make a usb key bootable.
 > There is a lot of ISO on the net to test the hardware, use gparted,......
-> In our case we have an 8GB partition (relative to RAM). The remaining space will allow to store
+> In our case, we have an 8GB partition (relative to RAM). The remaining space will allow to store
 > different configuration files and thus to completely redo the system from scratch.
 > The data part of the user must be saved using NAS / USB disk media.
 >
