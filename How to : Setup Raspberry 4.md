@@ -39,6 +39,16 @@ sudo systemctl enable ssh
 sudo systemctl start ssh
 ```
 
+# Keyboard issue
+
+```ssh
+echo "blacklist hid_logitech_dj" >> /etc/modprobe.d/local-dontload.conf
+echo "install hid_logitech_dj /bin/false" >> /etc/modprobe.d/local-dontload.conf
+depmod -a
+update-initramfs -u
+reboot
+```
+
 # Video performance
 ```ssh
 cat /proc/device-tree/soc/firmwarekms@7e600000/status
