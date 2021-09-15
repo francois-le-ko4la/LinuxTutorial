@@ -70,7 +70,13 @@ wget -qO- https://raw.githubusercontent.com/Botspot/pi-apps/master/install | bas
 
 # Update
 ```ssh
-Update sudo apt update sudo apt upgrade
+sudo apt update
+sudo apt upgrade
 ```
+# Add tool
+```ssh
+sudo apt install raspi-config tasksel
+```
+
 
 
