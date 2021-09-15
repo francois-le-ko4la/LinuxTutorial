@@ -48,6 +48,7 @@ depmod -a
 update-initramfs -u
 reboot
 ```
+> https://www.raspberrypi.org/forums/viewtopic.php?t=310293
 
 # Video performance
 ```ssh
