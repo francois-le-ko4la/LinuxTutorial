@@ -62,9 +62,11 @@ dtoverlay=vc4-kms-v3d-pi4
 
 # Install Pi Apps
 
+Pi Apps allow you to install interesting apps that are not in the repository.
 ```ssh
 wget -qO- https://raw.githubusercontent.com/Botspot/pi-apps/master/install | bash
 ```
+> https://github.com/Botspot/pi-apps
 
 # Update
 ```ssh
