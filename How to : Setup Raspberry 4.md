@@ -29,17 +29,23 @@
 * connect SSD and check
 * reboot on SSD
 * finish interactive setup
-* sudo apt update
-* sudo apt upgrade
-* sudo apt-get install openssh-server
-* sudo systemctl enable ssh
-* sudo systemctl start ssh
+* Update
+sudo apt update
+sudo apt upgrade
+* install ssh
+```ssh
+sudo apt-get install openssh-server
+sudo systemctl enable ssh
+sudo systemctl start ssh
+```
 
 # Video performance
+```ssh
 cat /proc/device-tree/soc/firmwarekms@7e600000/status
 disabled
 cat /proc/device-tree/v3dbus/v3d@7ec04000/status
 okay
 sudo cp /boot/firmware/config.txt /boot/firmware/config.bak
+```
 dtoverlay=vc4-kms-v3d-pi4
 
