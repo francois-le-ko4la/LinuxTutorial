@@ -60,6 +60,12 @@ sudo cp /boot/firmware/config.txt /boot/firmware/config.bak
 ```
 dtoverlay=vc4-kms-v3d-pi4
 
+# Install Pi Apps
+
+```ssh
+wget -qO- https://raw.githubusercontent.com/Botspot/pi-apps/master/install | bash
+```
+
 # Update
 ```ssh
 Update sudo apt update sudo apt upgrade
