@@ -3,9 +3,11 @@
 * Rasp PI4B 8GB
 * 1 SSD / USB3
 * 1 SD CARD
-* 1 cable (HDMI/microHDMI
+* 1 cable (HDMI/microHDMI)
+* 1 SD Card reader
+* 1 laptop with Raspberry Pi Imager
 
-# Imager
+# Raspberry Pi Imager
 * install Raspberry Pi OS Lite on SD card using imager
 * install Ubuntu on SSD card using imager
 
