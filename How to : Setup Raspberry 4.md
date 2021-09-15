@@ -29,5 +29,5 @@ cat /proc/device-tree/v3dbus/v3d@7ec04000/status
 okay
 
 sudo cp /boot/firmware/config.txt /boot/firmware/config.bak
-sudo sed -i 's/dtoverlay=.*/dtoverlay=vc4-kms-v3d-pi4, cma-128/' /boot/firmware/config.txt
+sudo sed -i 's/dtoverlay=.*/dtoverlay=vc4-fkms-v3d, cma-128/' /boot/firmware/config.txt
 
