@@ -72,7 +72,7 @@ dtoverlay=vc4-kms-v3d-pi4
 sudo hdparm -I /dev/sda | grep TRIM
 ```
 
-* Check services
+* Check service
 ```ssh
 systemctl status fstrim.timer
 sudo systemctl enable fstrim.timer
