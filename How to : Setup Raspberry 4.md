@@ -60,6 +60,12 @@ sudo cp /boot/firmware/config.txt /boot/firmware/config.bak
 ```
 dtoverlay=vc4-kms-v3d-pi4
 
+# Disable Bluetooth
+
+```ssh
+sudo sed -i 's/AutoEnable=.*/AutoEnable=false/' /etc/bluetooth/main.conf
+```
+
 # Install Pi Apps
 
 Pi Apps allow you to install interesting apps that are not in the repository.
@@ -78,5 +84,15 @@ sudo apt upgrade
 sudo apt install raspi-config tasksel
 ```
 
+# Unattended upgrade
+```ssh
+sudo sed -i 's=//Unattended-Upgrade::Mail.*=Unattended-Upgrade::Mail "XXX@XXX.fr";=' /etc/apt/apt.conf.d/50unattended-upgrades
+sudo sed -i 's=//Unattended-Upgrade::Remove-Unused-Kernel-Packages .*;=Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";=' /etc/apt/apt.conf.d/50unattended-upgrades
 
+sudo sed -i 's=//Unattended-Upgrade::Remove-Unused-Dependencies .*;=Unattended-Upgrade::Remove-Unused-Dependencies "true";=' /etc/apt/apt.conf.d/50unattended-upgrades
+
+sudo sed -i 's=//Unattended-Upgrade::Automatic-Reboot .*;=Unattended-Upgrade::Automatic-Reboot "true";=' /etc/apt/apt.conf.d/50unattended-upgrades
+sudo sed -i 's=//Unattended-Upgrade::Automatic-Reboot-WithUsers .*;=Unattended-Upgrade::Automatic-Reboot-WithUsers "true";=' /etc/apt/apt.conf.d/50unattended-upgrades
+sudo sed -i 's=//Unattended-Upgrade::Automatic-Reboot-Time .*;=Unattended-Upgrade::Automatic-Reboot-Time "04:00";=' /etc/apt/apt.conf.d/50unattended-upgrades
+```
 
