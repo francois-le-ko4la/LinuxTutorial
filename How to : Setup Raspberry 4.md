@@ -31,20 +31,22 @@ sudo raspi-config
 # First Boot on SSD
 * connect SSD and check the storage
 * reboot on SSD
-* finish interactive setup
-* Update
-```ssh
-sudo apt update
-sudo apt upgrade
-```
-* install ssh
+* finish interactive setup (dont update)
+
+# SSH
 ```ssh
 sudo apt-get install openssh-server
 sudo systemctl enable ssh
 sudo systemctl start ssh
 ```
 
-# Keyboard issue
+* Update Ubuntu
+```ssh
+sudo apt update
+sudo apt upgrade
+```
+
+# Keyboard issue (Logitech Wireless)
 
 ```ssh
 echo "blacklist hid_logitech_dj" >> /etc/modprobe.d/local-dontload.conf
@@ -97,12 +99,7 @@ wget -qO- https://raw.githubusercontent.com/Botspot/pi-apps/master/install | bas
 ```
 > https://github.com/Botspot/pi-apps
 
-# Update
-```ssh
-sudo apt update
-sudo apt upgrade
-```
-# Add tool
+# Add raspi-config & tasksel tool
 ```ssh
 sudo apt install raspi-config tasksel
 ```
