@@ -160,7 +160,7 @@ sudo /etc/init.d/postfix status
 sudo echo "Test mail from postfix" | mail -s "Test Postfix" adresse@mail.com
 ```
 
-# Overclock
+# Overclock (PI 4B 8GB)
 
 ```ssh
 sudo tee -a /boot/firmware/config.txt <<EOF
