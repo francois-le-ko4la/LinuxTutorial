@@ -97,15 +97,18 @@ sudo sed -i 's=//Unattended-Upgrade::Automatic-Reboot-Time .*;=Unattended-Upgrad
 
 # Postfix with GMail
 
+* Install postfix
 ```ssh
 sudo apt-get install postfix mailutils libsasl2-2 ca-certificates libsasl2-modules
 ```
+> choose website during the setup and leave the hostname by default
 
-choose website during the setup and leave the hostname by default
-
+* Enable postfix
 ```ssh
 sudo systemctl enable postfix
-
+```
+* Gmail Setup
+```ssh
 sudo sed -i 's/relayhost = .*/relayhost = [smtp.gmail.com]:587/' /etc/postfix/main.cf
 
 sudo tee -a /etc/postfix/main.cf <<EOF
@@ -117,16 +120,19 @@ smtp_use_tls = yes
 EOF
 
 sudo tee -a /etc/postfix/sasl_passwd  <<EOF
-[smtp.gmail.com]:587 XXXn@gmail.com:AppPassword
+[smtp.gmail.com]:587 XXX@gmail.com:AppPassword
 EOF
 
-chmod 400 /etc/postfix/sasl_passwd
-postmap /etc/postfix/sasl_passwd
+sudo chmod 400 /etc/postfix/sasl_passwd
+sudo postmap /etc/postfix/sasl_passwd
 cd /etc/ssl/certs
-openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key-for-smtp-gmail.pem -out cert-for-smtp-gmail.pem
+sudo openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key-for-smtp-gmail.pem -out cert-for-smtp-gmail.pem
 cat /etc/ssl/certs/cert-for-smtp-gmail.pem | sudo tee -a /etc/postfix/cacert.pem
-/etc/init.d/postfix reload
-/etc/init.d/postfix status
-echo "Test mail from postfix" | mail -s "Test Postfix" adresse@mail.com
+```
+* Reload and test
+```ssh
+sudo /etc/init.d/postfix reload
+sudo /etc/init.d/postfix status
+sudo echo "Test mail from postfix" | mail -s "Test Postfix" adresse@mail.com
 ```
 
