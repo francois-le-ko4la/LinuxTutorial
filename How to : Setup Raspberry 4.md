@@ -119,5 +119,14 @@ EOF
 sudo tee -a /etc/postfix/sasl_passwd  <<EOF
 [smtp.gmail.com]:587 XXXn@gmail.com:AppPassword
 EOF
+
+chmod 400 /etc/postfix/sasl_passwd
+postmap /etc/postfix/sasl_passwd
+cd /etc/ssl/certs
+openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key-for-smtp-gmail.pem -out cert-for-smtp-gmail.pem
+cat /etc/ssl/certs/cert-for-smtp-gmail.pem | sudo tee -a /etc/postfix/cacert.pem
+/etc/init.d/postfix reload
+/etc/init.d/postfix status
+echo "Test mail from postfix" | mail -s "Test Postfix" adresse@mail.com
 ```
 
