@@ -63,7 +63,9 @@ cat /proc/device-tree/v3dbus/v3d@7ec04000/status
 okay
 sudo cp /boot/firmware/config.txt /boot/firmware/config.bak
 ```
-dtoverlay=vc4-kms-v3d-pi4
+
+> dtoverlay=vc4-kms-v3d
+> gpu_mem=512
 
 # TRIM
 
@@ -157,3 +159,11 @@ sudo /etc/init.d/postfix status
 sudo echo "Test mail from postfix" | mail -s "Test Postfix" adresse@mail.com
 ```
 
+# Overclock
+
+```ssh
+sudo tee -a /boot/firmware/config.txt <<EOF
+arm_freq=2000
+over_voltage=6
+EOF
+```
