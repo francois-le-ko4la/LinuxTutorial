@@ -14,24 +14,29 @@
 # Update the PI4
 * Boot on SD card
 * Login
-* sudo apt update
-* sudo apt full-upgrade
-* sudo rpi-update
-* sudo rpi-eeprom-update -d -a
-* sudo raspi-config
-   * Boot options > Boot ROM option > Latest > No
-   * Boot options > Boot order > USB Boot > OK
-   * Finish
-   * No
+* update
+```ssh
+sudo apt update
+sudo apt full-upgrade
+sudo rpi-update
+sudo rpi-eeprom-update -d -a
+sudo raspi-config
+```
+> Boot options > Boot ROM option > Latest > No
+> Boot options > Boot order > USB Boot > OK
+> Finish
+> No
 > https://jamesachambers.com/raspberry-pi-4-ubuntu-20-04-usb-mass-storage-boot-guide/
 
-# First Boot
-* connect SSD and check
+# First Boot on SSD
+* connect SSD and check the storage
 * reboot on SSD
 * finish interactive setup
 * Update
+```ssh
 sudo apt update
 sudo apt upgrade
+```
 * install ssh
 ```ssh
 sudo apt-get install openssh-server
