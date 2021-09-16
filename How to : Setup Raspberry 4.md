@@ -40,7 +40,7 @@ sudo systemctl enable ssh
 sudo systemctl start ssh
 ```
 
-* Update Ubuntu
+# Update Ubuntu
 ```ssh
 sudo apt update
 sudo apt upgrade
