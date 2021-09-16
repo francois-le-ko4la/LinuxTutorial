@@ -85,6 +85,7 @@ sudo apt install raspi-config tasksel
 ```
 
 # Unattended upgrade
+## Setup unattended upgrade
 ```ssh
 sudo sed -i 's=//Unattended-Upgrade::Mail .*=Unattended-Upgrade::Mail "XXX@XXX.fr";=' /etc/apt/apt.conf.d/50unattended-upgrades
 sudo sed -i 's=//Unattended-Upgrade::MailReport .*;=Unattended-Upgrade::MailReport "on-change";=' /etc/apt/apt.conf.d/50unattended-upgrades
@@ -95,7 +96,7 @@ sudo sed -i 's=//Unattended-Upgrade::Automatic-Reboot-WithUsers .*;=Unattended-U
 sudo sed -i 's=//Unattended-Upgrade::Automatic-Reboot-Time .*;=Unattended-Upgrade::Automatic-Reboot-Time "04:00";=' /etc/apt/apt.conf.d/50unattended-upgrades
 ```
 
-# Postfix with GMail
+## Setup postfix with GMail
 
 * Install postfix
 ```ssh
