@@ -167,3 +167,8 @@ arm_freq=2000
 over_voltage=6
 EOF
 ```
+
+# Reboot & check
+```ssh
+sudo reboot
+```
