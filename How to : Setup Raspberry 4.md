@@ -65,6 +65,21 @@ sudo cp /boot/firmware/config.txt /boot/firmware/config.bak
 ```
 dtoverlay=vc4-kms-v3d-pi4
 
+# TRIM
+
+* check SSD :
+```ssh
+sudo hdparm -I /dev/sda | grep TRIM
+```
+
+* Check services
+```ssh
+systemctl status fstrim.timer
+sudo systemctl enable fstrim.timer
+sudo systemctl start fstrim.timer
+systemctl status fstrim.timer
+```
+
 # Disable Bluetooth
 
 ```ssh
