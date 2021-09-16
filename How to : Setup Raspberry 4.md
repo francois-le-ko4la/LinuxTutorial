@@ -81,6 +81,7 @@ sudo systemctl enable fstrim.timer
 sudo systemctl start fstrim.timer
 systemctl status fstrim.timer
 ```
+> Enabled by default on my plateform
 
 # Disable Bluetooth
 
