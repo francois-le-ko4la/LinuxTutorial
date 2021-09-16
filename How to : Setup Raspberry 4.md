@@ -97,10 +97,13 @@ sudo sed -i 's=//Unattended-Upgrade::Automatic-Reboot-Time .*;=Unattended-Upgrad
 
 # Postfix with GMail
 
+```ssh
 sudo apt-get install postfix mailutils libsasl2-2 ca-certificates libsasl2-modules
+```
 
 choose website during the setup and leave the hostname by default
 
+```ssh
 sudo systemctl enable postfix
 
 sudo sed -i 's/relayhost = .*/relayhost = [smtp.gmail.com]:587/' /etc/postfix/main.cf
@@ -116,3 +119,5 @@ EOF
 sudo tee -a /etc/postfix/sasl_passwd  <<EOF
 [smtp.gmail.com]:587 XXXn@gmail.com:AppPassword
 EOF
+```
+
