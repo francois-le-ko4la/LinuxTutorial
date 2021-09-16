@@ -99,10 +99,17 @@ wget -qO- https://raw.githubusercontent.com/Botspot/pi-apps/master/install | bas
 ```
 > https://github.com/Botspot/pi-apps
 
-# Add raspi-config & tasksel tool
+# Add raspi-config 
 ```ssh
-sudo apt install raspi-config tasksel
+sudo apt install raspi-config
 ```
+
+# Other
+```ssh
+sudo apt install ubuntu-restricted-extras tasksel
+```
+
+> ubuntu-restricted-extras.... yeeeees I know...... Bad.
 
 # Unattended upgrade
 ## Setup unattended upgrade
