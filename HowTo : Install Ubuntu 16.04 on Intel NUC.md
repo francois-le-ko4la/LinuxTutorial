@@ -32,22 +32,22 @@ We have enough tutorial on many websites... We use a flash drive in order to ins
 ### TRIM
 
 - Check `noatime`/`discard` parameters in `/etc/fstab`:
-```sh
+```
 UUID=XXXXXXXXXXXXXXXXXXX /               ext4    noatime,discard,errors=remount-ro 0       1
 ```
 - Check the TRIM process
-```sh
+```console
 sudo fstrim / -v
 [sudo] password for ko4la:
 
 /: 9,5 GiB (10213740544 bytes) trimmed
 ```
 - Create a crontab script
-```sh
+```console
 sudo vi /etc/cron.daily/fstrim
 ```
 - Use this example
-```sh
+```console
 #!/bin/sh
 LOG=/var/log/fstrim.log
 echo "$(date -R)" >> $LOG
@@ -56,35 +56,35 @@ fstrim -v / >> $LOG
 ### APT Cache on a TMPFS folder
 In order to protect the SSD, we replace original folder (`/var/cache/apt/archives`) by a TMPFS drive.
 - Edit `/etc/fstab`
-```ssh
+```console
 sudo vi /etc/fstab
 ```
 - Add the new mountpoint
-```ssh
+```
 tmpfs /media/virtualram tmpfs defaults,size=512M 0 0
 ```
 - Create the mountpoint and mount the drive
-```ssh
+```console
 sudo mkdir /media/virtualram
 sudo mount /media/virtualram
 ```
 - Create a link to the new drive
-```
+```console
 sudo rm -rf /var/cache/apt/archives
 sudo ln -s /media/virtualram/ /var/cache/apt/archives
 ```
 
 ### Disable swap
 - Edit `/etc/fstab`
-```ssh
+```console
 sudo vi /etc/fstab
 ```
 - Comment the line
-```ssh
+```
 # UUID=XXXXXXXX none            swap    sw              0       0
 ```
 - Disable the swap
-```ssh
+```console
 sudo swapoff -a
 ```
 We will use the swap space in order to create a recovery space.
@@ -106,7 +106,7 @@ According to the documentation we can use this tool on Crucial M500
 
 ### Chrome
 - Chrome installation
-```ssh
+```console
 echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
 sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
 sudo apt-get update
@@ -117,7 +117,7 @@ sudo apt-get install google-chrome-stable
 - Change the key `Unredirect Match` in the end: `....& !(class=^Goggle-chrome)`
 > This step is not required on Ubuntu 17.10 :)
 - Use the virtual drive to store Google Cache
-```ssh
+```console
 mkdir /media/virtualram/GPUCache
 mkdir /media/virtualram/google-chrome
 rm -rf $HOME/.config/google-chrome/Default/GPUCache
@@ -127,7 +127,7 @@ ln -s /media/virtualram/google-chrome $HOME/.cache/google-chrome
 ```
 - Edit `~.profile`:
 - Add theses lines:
-```ssh
+```console
 mkdir /media/virtualram/GPUCache > /dev/null 2>&1
 mkdir /media/virtualram/google-chrome > /dev/null 2>&1
 ```
@@ -138,7 +138,7 @@ mkdir /media/virtualram/google-chrome > /dev/null 2>&1
 ## Java 8
 
 Either we use the community version or we use the Oracle version. To avoid compatibility issue, there is a PPA allowing to have the Oracle version:
-```ssh
+```console
 sudo add-apt-repository -y ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get install oracle-java8-installer
@@ -155,11 +155,11 @@ Flash is a superhero that runs very fast. So nothing to do with a Linux installa
 
 ## Media Center
 ### Codecs
-```ssh
+```console
 sudo apt-get install ubuntu-restricted-extras libavcodec-extra
 ```
 ### Kodi
-```ssh
+```console
 sudo apt-get install kodi
 ```
 >
@@ -167,13 +167,13 @@ sudo apt-get install kodi
 >
 
 ### Plex
-```ssh
+```console
 wget https://downloads.plex.tv/plex-media-server/0.9.16.4.1911-ee6e505/plexmediaserver_0.9.16.4.1911-ee6e505_amd64.deb
 dpkg -i plexmediaserver_0.9.16.4.1911-ee6e505_amd64.deb
 ```
 
 ### Caffeine
-```ssh
+```console
 sudo apt-get install caffeine
 ```
 
@@ -190,7 +190,7 @@ All have been packaged to simplify security tasks : https://help.ubuntu.com/comm
 
 Ok, we don't like it... really... Therefore, we uninstall `ufw`/`firewalld` and we setup `iptables`.
 
-```ssh
+```console
 sudo apt-get remove --purge ufw
 sudo apt-get remove --purge firewalld
 sudo apt-get install iptables-persistent
@@ -204,7 +204,7 @@ sudo invoke-rc.d netfilter-persistent save
 > Don't use an online tool to store your password !!!!! Never.
 > Use Keepass2.... trust me.....
 >
-```ssh
+```console
 sudo apt-get install keepass2
 ```
 >
@@ -219,7 +219,7 @@ sudo apt-get install keepass2
 - Use HPPS everywhere with chrome: https://chrome.google.com/webstore/detail/https-everywhere/gcbommkclmclpchllfjekcdonpmejbdp?utm_source=chrome-ntp-icon
 
 ### Fail2Ban: secure connections
-```ssh
+```console
 sudo fail2ban-client
 ```
 > source of information: https://doc.ubuntu-fr.org/fail2ban
@@ -227,7 +227,7 @@ sudo fail2ban-client
 ### VPN
 
 - Install `OpenVPN`
-```ssh
+```console
 sudo apt-get install openvpn network-manager-openvpn network-manager-openvpn-gnome
 ```
 >
@@ -237,36 +237,36 @@ sudo apt-get install openvpn network-manager-openvpn network-manager-openvpn-gno
 
 ## Recover partition
 - Create a mountpoint
-```ssh
+```console
 sudo mkdir /media/recover
 ```
 - Install/start `gparted`
-```ssh
+```console
 sudo apt-get install gparted
 sudo gparted
 ```
 - Right click on swap partition Format > ext4
 - Edit `/etc/fstab`
-```ssh
+```
 UUID=XXXXX /media/recover  ext4    noatime,discard,errors=remount-ro 0       1
 ```
 - Mount the device and copy iso
-```ssh
+```console
 sudo mount /media/recover
 cd /media/recover
 sudo wget http://www-ftp.lip6.fr/pub/linux/distributions/Ubuntu/releases/16.04/ubuntu-16.04-desktop-amd64.iso
 ```
 - Edit `/etc/default/grub`
-```ssh
+```console
 sudo vi /etc/default/grub
 ```
 - Comment `GRUB_HIDDEN_TIMEOUT=0`
 - Edit /etc/grub.d/40_custom
-```ssh
+```console
 sudo vi /etc/grub.d/40_custom
 ```
 - Add the menuEntry :
-```ssh
+```
 menuentry "Ubuntu 16.04LTS ISO" {
   insmod loopback
   insmod iso9660
@@ -280,7 +280,7 @@ menuentry "Ubuntu 16.04LTS ISO" {
 > change "loopback loop (hd0,gpt3)$isofile" according to your setup.
 >
 - Update Grub
-```ssh
+```console
 sudo update-grub2
 ```
 - Restart the system
