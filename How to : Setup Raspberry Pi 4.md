@@ -15,7 +15,7 @@
 * Boot on SD card
 * Login
 * update
-```ssh
+```console
 sudo apt update
 sudo apt full-upgrade
 sudo rpi-update
@@ -34,21 +34,21 @@ sudo raspi-config
 * finish interactive setup (dont update)
 
 # SSH
-```ssh
+```console
 sudo apt-get install openssh-server
 sudo systemctl enable ssh
 sudo systemctl start ssh
 ```
 
 # Update Ubuntu
-```ssh
+```console
 sudo apt update
 sudo apt upgrade
 ```
 
 # Keyboard issue (Logitech Wireless)
 
-```ssh
+```console
 echo "blacklist hid_logitech_dj" >> /etc/modprobe.d/local-dontload.conf
 echo "install hid_logitech_dj /bin/false" >> /etc/modprobe.d/local-dontload.conf
 depmod -a
@@ -58,26 +58,27 @@ reboot
 > https://www.raspberrypi.org/forums/viewtopic.php?t=310293
 
 # Video performance
-```ssh
+```console
 cat /proc/device-tree/soc/firmwarekms@7e600000/status
 disabled
 cat /proc/device-tree/v3dbus/v3d@7ec04000/status
 okay
 sudo cp /boot/firmware/config.txt /boot/firmware/config.bak
 ```
-
-> dtoverlay=vc4-kms-v3d
-> gpu_mem=512
+```
+dtoverlay=vc4-kms-v3d
+gpu_mem=512
+```
 
 # TRIM
 
 * check SSD :
-```ssh
+```console
 sudo hdparm -I /dev/sda | grep TRIM
 ```
 
 * Check service
-```ssh
+```console
 systemctl status fstrim.timer
 sudo systemctl enable fstrim.timer
 sudo systemctl start fstrim.timer
@@ -87,25 +88,25 @@ systemctl status fstrim.timer
 
 # Disable Bluetooth
 
-```ssh
+```console
 sudo sed -i 's/AutoEnable=.*/AutoEnable=false/' /etc/bluetooth/main.conf
 ```
 
 # Install Pi Apps
 
 Pi Apps allow you to install interesting apps that are not in the repository.
-```ssh
+```console
 wget -qO- https://raw.githubusercontent.com/Botspot/pi-apps/master/install | bash
 ```
 > https://github.com/Botspot/pi-apps
 
 # Add raspi-config 
-```ssh
+```console
 sudo apt install raspi-config
 ```
 
 # Other
-```ssh
+```console
 sudo apt install ubuntu-restricted-extras tasksel
 ```
 
@@ -113,7 +114,7 @@ sudo apt install ubuntu-restricted-extras tasksel
 
 # Unattended upgrade
 ## Setup unattended upgrade
-```ssh
+```console
 sudo sed -i 's=//Unattended-Upgrade::Mail .*=Unattended-Upgrade::Mail "XXX@XXX.fr";=' /etc/apt/apt.conf.d/50unattended-upgrades
 sudo sed -i 's=//Unattended-Upgrade::MailReport .*;=Unattended-Upgrade::MailReport "on-change";=' /etc/apt/apt.conf.d/50unattended-upgrades
 sudo sed -i 's=//Unattended-Upgrade::Remove-Unused-Kernel-Packages .*;=Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";=' /etc/apt/apt.conf.d/50unattended-upgrades
@@ -126,17 +127,17 @@ sudo sed -i 's=//Unattended-Upgrade::Automatic-Reboot-Time .*;=Unattended-Upgrad
 ## Setup postfix with GMail
 
 * Install postfix
-```ssh
+```console
 sudo apt-get install postfix mailutils libsasl2-2 ca-certificates libsasl2-modules
 ```
 > choose website during the setup and leave the hostname by default
 
 * Enable postfix
-```ssh
+```console
 sudo systemctl enable postfix
 ```
 * Gmail Setup
-```ssh
+```console
 sudo sed -i 's/relayhost = .*/relayhost = [smtp.gmail.com]:587/' /etc/postfix/main.cf
 
 sudo tee -a /etc/postfix/main.cf <<EOF
@@ -158,7 +159,7 @@ sudo openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key-for-s
 cat /etc/ssl/certs/cert-for-smtp-gmail.pem | sudo tee -a /etc/postfix/cacert.pem
 ```
 * Reload and test
-```ssh
+```console
 sudo /etc/init.d/postfix reload
 sudo /etc/init.d/postfix status
 sudo echo "Test mail from postfix" | mail -s "Test Postfix" adresse@mail.com
@@ -166,7 +167,7 @@ sudo echo "Test mail from postfix" | mail -s "Test Postfix" adresse@mail.com
 
 # Overclock (PI 4B 8GB)
 
-```ssh
+```console
 sudo tee -a /boot/firmware/config.txt <<EOF
 arm_freq=2000
 over_voltage=6
@@ -174,6 +175,9 @@ EOF
 ```
 
 # Reboot & check
-```ssh
+```console
 sudo reboot
 ```
+
+# Conclusion
+This document is a quick summary and allow me to track important things. In the real life I prefer to use ansible in order to apply the config on different Raspberry : https://github.com/francois-le-ko4la/ansible-raspberry
