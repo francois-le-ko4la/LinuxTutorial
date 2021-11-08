@@ -19,3 +19,9 @@ deborphan
 
 # delete orphan pkg:
 sudo apt-get remove --purge $(deborphan)
+
+# Check default packages:
+wget http://ftp.jaist.ac.jp/pub/Linux/ubuntu-cdimage/ubuntu/daily-preinstalled/20211107/jammy-preinstalled-desktop-arm64+raspi.manifest
+cat jammy-preinstalled-desktop-arm64+raspi.manifest | awk '{print $1}' | sort > packages.default.list
+dpkg --get-selections  | cut -f 1 | sort > packages.installed.list
+combine packages.default.list not packages.installed.list > packages.diff.list
