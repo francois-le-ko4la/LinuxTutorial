@@ -1,0 +1,21 @@
+
+# Check package from PPA :
+sudo apt-cache policy $(dpkg --get-selections | grep -v deinstall$ | awk '{ print $1 }') | perl -e '@a = <>; $a=join("", @a); $a =~ s/\n(\S)/\n\n$1/g;  @packages = split("\n\n", $a); foreach $p (@packages) {print "$1: $2\n" if $p =~ /^(.*?):.*?500 http:\/\/ppa\.launchpad\.net\/(.*?)\s/s}'
+
+# Check PPA define
+more /etc/apt/sources.list.d/*
+
+# Check key
+sudo apt-key list
+
+# Delete key
+sudo apt-key del "XXX"
+
+# purge configuration
+sudo dpkg --purge $(COLUMNS=200 dpkg -l | grep "^rc" | tr -s ' ' | cut -d ' ' -f 2)
+
+# check orphan pkg:
+deborphan
+
+# delete orphan pkg:
+sudo apt-get remove --purge $(deborphan)
