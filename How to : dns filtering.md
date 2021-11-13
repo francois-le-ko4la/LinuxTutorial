@@ -1,6 +1,16 @@
 My personal list of DNS filters which allows me to have a balance between efficiency and family use of a network link.
 I use this list with AdGuard Home -> filter 60% of my traffic...
 
+# Adguard Home
+
+I use the Docker image : https://hub.docker.com/r/adguard/adguardhome
+Easy to setup, easy to use.
+
+
+# Filters
+
+Below, my filter used with AdGuard.
+
 ```yaml
 - enabled: true
   url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
