@@ -1,15 +1,69 @@
-My personal list of DNS filters which allows me to have a balance between efficiency and family use of a network link.
-I use this list with AdGuard Home -> filter 60% of my traffic...
-
-# Adguard Home
+# How to filter DNS request with Adguard Home?
 
 I use the Docker image : https://hub.docker.com/r/adguard/adguardhome
 Easy to setup, easy to use.
 
+## Prepare
+### Pull docker image
+```sh
+docker pull adguard/adguardhome
+```
+
+### Create config/data directory
+```sh
+mkdir -p /opt/adguard-home/work/data
+mkdir -p /opt/adguard-home/conf
+```
+### Use TMPFS to protect the SD card
+
+Use VI to mount /opt/adguard-home/work/data as TMPFS
+```
+tmpfs /opt/adguard-home/work/data tmpfs defaults,noexec,nosuid,nodev,mode=0755 0 0
+```
+Mount the TMPFS
+```
+sudo mount /opt/adguard-home/work/data
+```
+
+## Start the container
+### docker-compose.yml
+
+Define your container (docker-compose.yml) :
+```yaml
+version: '3.3'
+services:
+  adguard:
+    container_name: adguardhome
+    image: adguard/adguardhome
+    environment:
+      - TZ=Europe/Paris
+    volumes:
+      - ./work:/opt/adguardhome/work
+      - ./conf:/opt/adguardhome/conf
+    ports:
+      #- 53:53/tcp  # port DNS
+      - 53:53/udp  # port DNS
+        #- 67:67/udp  # port DHCP serveur BOOTP
+        #- 68:68/tcp  # port DHCP client BOOTP
+        #- 68:68/udp  # port DHCP client BOOTP
+      - 80:80/tcp  # port HTTP
+      - 443:443/tcp  # port HTTPS
+      - 853:853/tcp  # port DNS over TLS
+      - 3000:3000/tcp  # port HTTP temporaire pour la première configuration d'AdGuard
+    network_mode: host  # nécessaire si AdGuard Home est utilisé en tant que serveur DHCP
+    restart: unless-stopped
+```
+
+### Start
+
+```sh
+sudo docker-compose up -d
+```
 
 # Filters
 
-Below, my filter used with AdGuard :
+My personal list of DNS filters which allows me to have a balance between efficiency and family use of a network link.
+I use this list with AdGuard Home -> filter 60% of my traffic...
 
 ```yaml
 - enabled: true
