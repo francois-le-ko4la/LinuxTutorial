@@ -40,16 +40,6 @@ services:
     volumes:
       - ./work:/opt/adguardhome/work
       - ./conf:/opt/adguardhome/conf
-    ports:
-      #- 53:53/tcp  # port DNS
-      - 53:53/udp  # port DNS
-        #- 67:67/udp  # port DHCP serveur BOOTP
-        #- 68:68/tcp  # port DHCP client BOOTP
-        #- 68:68/udp  # port DHCP client BOOTP
-      - 80:80/tcp  # port HTTP
-      - 443:443/tcp  # port HTTPS
-      - 853:853/tcp  # port DNS over TLS
-      - 3000:3000/tcp  # port HTTP temporaire pour la première configuration d'AdGuard
     network_mode: host  # nécessaire si AdGuard Home est utilisé en tant que serveur DHCP
     restart: unless-stopped
 ```
