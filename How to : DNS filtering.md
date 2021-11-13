@@ -16,7 +16,7 @@ mkdir -p /opt/adguard-home/conf
 ```
 ### Use TMPFS to protect the SD card
 
-Use VI to mount /opt/adguard-home/work/data as TMPFS
+Use VI to define /opt/adguard-home/work/data as a TMPFS
 ```
 tmpfs /opt/adguard-home/work/data tmpfs defaults,noexec,nosuid,nodev,mode=0755 0 0
 ```
