@@ -1,4 +1,4 @@
-# Before to go
+# Beginning
 
 * Rasp PI4B 8GB
 * 1 SSD / USB3
