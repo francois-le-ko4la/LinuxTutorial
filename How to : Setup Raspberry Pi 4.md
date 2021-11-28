@@ -208,6 +208,8 @@ chrome://flags/#ignore-gpu-blocklist - enabled
 chrome://flags/#enable-gpu-rasterization - enabled
 chrome://flags/#enable-accelerated-video-decode - missing in flags, but after restart Chromium chrome://gpu all settings is green (enabled) except Vulkan.
 add h264ify plungin
+chromium --use-gl=desktop on GNOME/Wayland.
+chromium --use-gl=egl on GNOME/Xorg.
 
 # Overclock (PI 4B 8GB)
 
