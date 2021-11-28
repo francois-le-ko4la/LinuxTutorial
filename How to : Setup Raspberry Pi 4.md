@@ -67,11 +67,11 @@ sudo cp /boot/firmware/config.txt /boot/firmware/config.bak
 ```
 ```
 dtoverlay=vc4-kms-v3d
-gpu_mem=512
+gpu_mem=256
 ```
 
 # TRIM
-
+## Issue with USB Storage
 * check SSD :
 ```console
 sudo hdparm -I /dev/sda | grep TRIM
@@ -83,6 +83,9 @@ sudo fstrim -v /
 fstrim: /: the discard operation is not supported
 ```
 Here, we have an issue with TRIM on USB storage.
+usefull link : https://www.glump.net/howto/desktop/enable-trim-on-an-external-ssd-on-linux
+
+## Fix
 To solve this issue we list the USB device:
 ```console
 lsusb
@@ -98,18 +101,20 @@ We create a udev rule (/etc/udev/rules.d/50-usb-ssd-trim.rules) to enable TRIM:
 ```console
 ACTION=="add|change", ATTRS{idVendor}=="174c", ATTRS{idProduct}=="235c", SUBSYSTEM=="scsi_disk", ATTR{provisioning_mode}="unmap"
 ```
-We fxe the /etc/fstab:
+Fixe the /etc/fstab:
 ```console
 # UNCONFIGURED FSTAB FOR BASE SYSTEM
 LABEL=writable    /     ext4    defaults,noatime,discard,x-systemd.growfs    0 0
 LABEL=system-boot       /boot/firmware  vfat    defaults        0       1
 tmpfs /var/cache/apt/archives tmpfs defaults,noexec,nosuid,nodev,mode=0755 0 0
 ```
-We reboot and test again:
+Reboot and test again:
 ```console
 sudo fstrim -v /
 /: 54.9 GiB (58915901440 bytes) trimmed
 ```
+
+## TRIM service
 
 * Check service
 ```console
