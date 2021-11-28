@@ -213,6 +213,15 @@ chromium --use-gl=egl on GNOME/Xorg.
 --enable-features=VaapiVideoDecoder
 --disk-cache-dir="/media/ramdisk/"
 
+# FF
+in about:config change back to false
+layers.acceleration.force-enabled false
+
+what we want to use is the webrender, the working parts. :lol:
+gfx.webrender.compositor true
+gfx.webrender.compositor.force-enabled true
+gfx.webrender.enabled true
+
 # Overclock (PI 4B 8GB)
 
 ```console
