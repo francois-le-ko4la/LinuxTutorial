@@ -203,6 +203,12 @@ sudo /etc/init.d/postfix status
 sudo echo "Test mail from postfix" | mail -s "Test Postfix" adresse@mail.com
 ```
 
+# Chrome
+chrome://flags/#ignore-gpu-blocklist - enabled
+chrome://flags/#enable-gpu-rasterization - enabled
+chrome://flags/#enable-accelerated-video-decode - missing in flags, but after restart Chromium chrome://gpu all settings is green (enabled) except Vulkan.
+add h264ify plungin
+
 # Overclock (PI 4B 8GB)
 
 ```console
