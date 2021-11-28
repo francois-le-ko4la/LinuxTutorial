@@ -210,6 +210,7 @@ chrome://flags/#enable-accelerated-video-decode - missing in flags, but after re
 add h264ify plungin
 chromium --use-gl=desktop on GNOME/Wayland.
 chromium --use-gl=egl on GNOME/Xorg.
+--enable-features=VaapiVideoDecoder
 
 # Overclock (PI 4B 8GB)
 
