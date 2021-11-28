@@ -211,6 +211,7 @@ add h264ify plungin
 chromium --use-gl=desktop on GNOME/Wayland.
 chromium --use-gl=egl on GNOME/Xorg.
 --enable-features=VaapiVideoDecoder
+--disk-cache-dir="/media/ramdisk/"
 
 # Overclock (PI 4B 8GB)
 
