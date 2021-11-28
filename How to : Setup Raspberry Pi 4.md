@@ -215,20 +215,21 @@ chromium --use-gl=egl on GNOME/Xorg.
 
 # FF
 ```console
-in about:config change back to false
-layers.acceleration.force-enabled false
-
-what we want to use is the webrender, the working parts. :lol:
-gfx.webrender.compositor true
-gfx.webrender.compositor.force-enabled true
-gfx.webrender.enabled true
-
-----
-
-Go to about:config in your address bar.
-Search for webgl. force-enabled and make sure this preference is set to true. ...
-Search for webgl. disabled and make sure this preference is set to false. ...
-Restart Firefox to apply your new settings
+in about:config
+gfx.webrender.all=true
+gfx.webrender.force-disabled=false
+layers.acceleration.force-enabled=true
+layers.gpu-process.enabled=true
+media.gpu-process-decoder=true
+dom.webgpu.enabled=true
+media.ffmpeg.vaapi.enabled
+media.ffmpeg.vaapi-drm-display.enabled=true
+layers.omtp.enabled true
+media.navigator.mediadatadecoder_vpx_enabled=true
+media.ffvpx.enabled=true
+gfx.x11-egl.force-enabled=false
+gfx.x11-egl.force-disabled=true
+# ? gfx.x11-egl=true
 ```
 
 # Overclock (PI 4B 8GB)
