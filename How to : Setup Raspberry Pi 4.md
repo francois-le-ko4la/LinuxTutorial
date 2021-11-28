@@ -75,6 +75,40 @@ gpu_mem=512
 * check SSD :
 ```console
 sudo hdparm -I /dev/sda | grep TRIM
+           *    Data Set Management TRIM supported (limit 8 blocks)
+```
+* check TRIM
+```console
+sudo fstrim -v /
+fstrim: /: the discard operation is not supported
+```
+Here, we have an issue with TRIM on USB storage.
+To solve this issue we list the USB device:
+```console
+lsusb
+Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 002 Device 002: ID 174c:235c ASMedia Technology Inc. Ugreen Storage Device
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 003: ID 046d:c52b Logitech, Inc. Unifying Receiver
+Bus 001 Device 002: ID 2109:3431 VIA Labs, Inc. Hub
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+```
+My ProductId/VendorID are 174c:235c.
+We create a udev rule (/etc/udev/rules.d/50-usb-ssd-trim.rules) to enable TRIM:
+```console
+ACTION=="add|change", ATTRS{idVendor}=="174c", ATTRS{idProduct}=="235c", SUBSYSTEM=="scsi_disk", ATTR{provisioning_mode}="unmap"
+```
+We fxe the /etc/fstab:
+```console
+# UNCONFIGURED FSTAB FOR BASE SYSTEM
+LABEL=writable    /     ext4    defaults,noatime,discard,x-systemd.growfs    0 0
+LABEL=system-boot       /boot/firmware  vfat    defaults        0       1
+tmpfs /var/cache/apt/archives tmpfs defaults,noexec,nosuid,nodev,mode=0755 0 0
+```
+We reboot and test again:
+```console
+sudo fstrim -v /
+/: 54.9 GiB (58915901440 bytes) trimmed
 ```
 
 * Check service
@@ -84,7 +118,6 @@ sudo systemctl enable fstrim.timer
 sudo systemctl start fstrim.timer
 systemctl status fstrim.timer
 ```
-> Enabled by default on my plateform
 
 # Disable Bluetooth
 
@@ -92,7 +125,7 @@ systemctl status fstrim.timer
 sudo sed -i 's/AutoEnable=.*/AutoEnable=false/' /etc/bluetooth/main.conf
 ```
 
-# Install Pi Apps
+# Install Pi Apps (optional)
 
 Pi Apps allow you to install interesting apps that are not in the repository.
 ```console
