@@ -1,0 +1,9 @@
+sudo apt install vim vim-youcompleteme vim-autopep8 vim-python-jedi
+vim-addons install youcompleteme autopep8 python-jedi
+
+filetype plugin indent on
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set number
+
