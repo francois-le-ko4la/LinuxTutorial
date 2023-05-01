@@ -1,7 +1,7 @@
 sudo apt install vim vim-youcompleteme vim-autopep8 vim-python-jedi
 sudo vim-addons install youcompleteme autopep8 python-jedi --system-wide
 
-sudo  /etc/vim/vimrc
+sudo vi /etc/vim/vimrc
 syntax on
 colorscheme darkblue
 filetype plugin indent on
